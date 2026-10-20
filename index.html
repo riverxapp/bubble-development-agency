@@ -2,65 +2,716 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Edit Me</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bubblecraft — Bubble Development Agency for Production Apps</title>
+  <meta name="description" content="Bubblecraft is a specialist Bubble development agency. We design, build and scale production-grade apps on Bubble — MVPs in weeks, not quarters." />
+  <meta name="theme-color" content="#0b0b16" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Bubblecraft — Bubble Development Agency for Production Apps" />
+  <meta property="og:description" content="Specialist Bubble developers for startups and scaleups. MVPs shipped in weeks, apps that hold up at 100,000 users." />
+  <meta property="og:image" content="/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      color-scheme: light;
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <script>document.documentElement.classList.add("js");</script>
+  <noscript>
+    <style>
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    </style>
+  </noscript>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Bubblecraft",
+    "description": "Specialist Bubble development agency building production-grade no-code apps.",
+    "url": "https://bubblecraft.studio",
+    "email": "hello@bubblecraft.studio",
+    "areaServed": "Worldwide",
+    "priceRange": "$$$",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "63"
     }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      background: #ffffff;
-      color: #111111;
-      font-family: "Inter", sans-serif;
-    }
-
-    main {
-      width: min(28rem, calc(100vw - 2rem));
-      text-align: center;
-    }
-
-    .icon {
-      width: 3rem;
-      height: 3rem;
-      margin: 0 auto 1rem;
-      display: block;
-      color: #111111;
-    }
-
-    h1 {
-      margin: 0 0 0.5rem;
-      font-size: 1.5rem;
-      font-weight: 600;
-    }
-
-    p {
-      margin: 0;
-      font-size: 1rem;
-      line-height: 1.5;
-      color: #444444;
-    }
-  </style>
+  }
+  </script>
 </head>
 <body>
-  <main>
-    <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M12 3L4 7V12C4 17 7.4 20.9 12 22C16.6 20.9 20 17 20 12V7L12 3Z" stroke="currentColor" stroke-width="1.5"/>
-      <path d="M9.5 12L11.25 13.75L15 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    <h1>Open for Editing</h1>
-    <p>Agent: edit this page freely and keep it simple.</p>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container site-header__inner">
+      <a class="brand" href="#top" aria-label="Bubblecraft home">
+        <span class="brand__mark" aria-hidden="true">
+          <span class="brand__bubble brand__bubble--1"></span>
+          <span class="brand__bubble brand__bubble--2"></span>
+          <span class="brand__bubble brand__bubble--3"></span>
+        </span>
+        <span class="brand__word">Bubblecraft</span>
+      </a>
+
+      <nav class="nav" id="primaryNav" aria-label="Primary">
+        <ul class="nav__list">
+          <li><a href="#services">Services</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+        <div class="nav__cta">
+          <a class="btn btn--primary btn--sm" href="#contact">Book a scoping call</a>
+        </div>
+      </nav>
+
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Open menu">
+        <span class="nav-toggle__bars" aria-hidden="true"><i></i><i></i><i></i></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <canvas class="hero__canvas" id="bubbleCanvas" aria-hidden="true"></canvas>
+      <div class="hero__glow" aria-hidden="true"></div>
+
+      <div class="container hero__inner">
+        <div class="hero__copy">
+          <p class="eyebrow reveal">
+            <span class="eyebrow__dot" aria-hidden="true"></span>
+            Bubble development agency · Remote worldwide
+          </p>
+          <h1 class="hero__title reveal">
+            Production apps,<br />
+            built on <span class="grad-text">Bubble</span>
+            <span class="hero__serif">— shipped in weeks.</span>
+          </h1>
+          <p class="hero__lede reveal">
+            We are a team of senior Bubble developers who build the apps other no-code studios avoid:
+            real data models, clean workflows, and front-ends that hold up under real traffic.
+          </p>
+          <div class="hero__actions reveal">
+            <a class="btn btn--primary" href="#contact">Book a scoping call</a>
+            <a class="btn btn--ghost" href="#work">
+              See our work
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11M10.5 5.5 15 10l-4.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+          <dl class="hero__proof reveal">
+            <div><dt>Apps shipped</dt><dd><span data-count="128">0</span>+</dd></div>
+            <div><dt>Avg. time to launch</dt><dd><span data-count="6">0</span> wks</dd></div>
+            <div><dt>Client rating</dt><dd><span data-count="4.9" data-decimals="1">0</span>/5</dd></div>
+          </dl>
+        </div>
+
+        <div class="hero__visual reveal">
+          <div class="orb orb--1" aria-hidden="true"></div>
+          <div class="orb orb--2" aria-hidden="true"></div>
+          <div class="orb orb--3" aria-hidden="true"></div>
+
+          <div class="app-window">
+            <div class="app-window__bar">
+              <span class="app-window__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="app-window__url">app.bubblecraft.io</span>
+            </div>
+            <div class="app-window__body">
+              <aside class="app-sidebar" aria-hidden="true">
+                <span class="app-sidebar__logo"></span>
+                <span class="app-sidebar__item app-sidebar__item--active"></span>
+                <span class="app-sidebar__item"></span>
+                <span class="app-sidebar__item"></span>
+                <span class="app-sidebar__item"></span>
+                <span class="app-sidebar__item"></span>
+              </aside>
+              <div class="app-main">
+                <div class="app-main__head">
+                  <span class="app-main__title"></span>
+                  <span class="app-main__pill"></span>
+                </div>
+                <div class="app-main__stats">
+                  <div class="app-stat"><span class="app-stat__label"></span><span class="app-stat__value"></span><span class="app-stat__delta">+18%</span></div>
+                  <div class="app-stat"><span class="app-stat__label"></span><span class="app-stat__value"></span><span class="app-stat__delta">+42%</span></div>
+                  <div class="app-stat"><span class="app-stat__label"></span><span class="app-stat__value"></span><span class="app-stat__delta">+7%</span></div>
+                </div>
+                <div class="app-chart" aria-hidden="true">
+                  <span style="--h:38%"></span><span style="--h:62%"></span><span style="--h:45%"></span><span style="--h:88%"></span><span style="--h:56%"></span><span style="--h:100%"></span><span style="--h:72%"></span>
+                </div>
+                <div class="app-rows" aria-hidden="true">
+                  <div class="app-row"><i></i><b></b><u></u></div>
+                  <div class="app-row"><i></i><b></b><u></u></div>
+                  <div class="app-row"><i></i><b></b><u></u></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="float-card float-card--a" aria-hidden="true">
+            <span class="float-card__icon"></span>
+            <span class="float-card__text"><b>Workflow shipped</b><i>2.4s</i></span>
+          </div>
+          <div class="float-card float-card--b" aria-hidden="true">
+            <span class="float-card__avatars"><i></i><i></i><i></i></span>
+            <span class="float-card__text"><b>1,284 users online</b><i>Live</i></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="logos" aria-label="Clients">
+      <div class="container">
+        <p class="logos__label">Trusted by product teams at</p>
+      </div>
+      <div class="marquee" data-marquee>
+        <div class="marquee__track">
+          <ul class="marquee__group">
+            <li>Northwind</li><li>Lumen Health</li><li>Relay</li><li>Coursely</li><li>Medley</li><li>Fleetbase</li><li>Arcadia</li><li>Payload</li>
+          </ul>
+          <ul class="marquee__group" aria-hidden="true">
+            <li>Northwind</li><li>Lumen Health</li><li>Relay</li><li>Coursely</li><li>Medley</li><li>Fleetbase</li><li>Arcadia</li><li>Payload</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="Company results">
+      <div class="container stats__grid">
+        <div class="stat reveal">
+          <p class="stat__value"><span data-count="128">0</span><span class="stat__suffix">+</span></p>
+          <p class="stat__label">Bubble apps shipped to production</p>
+        </div>
+        <div class="stat reveal">
+          <p class="stat__value"><span class="stat__prefix">$</span><span data-count="42">0</span><span class="stat__suffix">M</span></p>
+          <p class="stat__label">Client revenue running on our builds</p>
+        </div>
+        <div class="stat reveal">
+          <p class="stat__value"><span data-count="99.9" data-decimals="1">0</span><span class="stat__suffix">%</span></p>
+          <p class="stat__label">Uptime across managed client apps</p>
+        </div>
+        <div class="stat reveal">
+          <p class="stat__value"><span data-count="4.9" data-decimals="1">0</span><span class="stat__suffix">/5</span></p>
+          <p class="stat__label">Average client rating, 63 reviews</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>What we do</p>
+          <h2 class="section__title">Everything a Bubble product needs,<br /><span class="hero__serif">minus the learning curve.</span></h2>
+          <p class="section__lede">A senior-only team, one specialist per layer of the stack. We take on the hard parts of Bubble — the parts most studios avoid.</p>
+        </div>
+
+        <div class="bento">
+          <article class="card bento__card bento__card--wide reveal">
+            <span class="card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M4 17.5 9 12l3.5 3.5L20 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.5 8H20v4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <h3>MVP development</h3>
+            <p>From whiteboard to a live, tested, paid product in four to six weeks. Scope, flows, data model and a Figma design system that maps cleanly onto Bubble components.</p>
+            <ul class="card__list">
+              <li>Product &amp; data architecture</li>
+              <li>Figma UI mapped to Bubble styles</li>
+              <li>Payment, auth and email setup</li>
+            </ul>
+          </article>
+
+          <article class="card bento__card reveal">
+            <span class="card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 3.5a8.5 8.5 0 1 0 8.5 8.5A8.5 8.5 0 0 0 12 3.5Z" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 12h17M12 3.5c2.2 2.3 3.3 5.2 3.3 8.5S14.2 18.2 12 20.5C9.8 18.2 8.7 15.3 8.7 12S9.8 5.8 12 3.5Z" stroke="currentColor" stroke-width="1.6"/></svg>
+            </span>
+            <h3>Scale &amp; performance</h3>
+            <p>We profile and rebuild slow pages, trim runaway workflows and restructure data so your app stays fast at 100,000 users.</p>
+          </article>
+
+          <article class="card bento__card reveal">
+            <span class="card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M8 4H5.5A1.5 1.5 0 0 0 4 5.5V9M16 4h2.5A1.5 1.5 0 0 1 20 5.5V9M8 20H5.5A1.5 1.5 0 0 1 4 18.5V15M16 20h2.5a1.5 1.5 0 0 0 1.5-1.5V15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><rect x="8.5" y="8.5" width="7" height="7" rx="1.6" stroke="currentColor" stroke-width="1.6"/></svg>
+            </span>
+            <h3>Rescue &amp; rebuilds</h3>
+            <p>Inherited a messy editor project? We untangle data types, rebuild broken workflows and leave you with a project that is finally maintainable.</p>
+          </article>
+
+          <article class="card bento__card bento__card--wide reveal">
+            <span class="card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M9 7 4 12l5 5M15 7l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 4v16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="2 3"/></svg>
+            </span>
+            <h3>Custom plugins &amp; API integrations</h3>
+            <p>Bubble is our home, not our ceiling. We ship server-side plugins, webhooks and third-party integrations — Stripe, OpenAI, Twilio, your internal stack.</p>
+            <ul class="card__list">
+              <li>Node.js / TypeScript plugins</li>
+              <li>REST &amp; GraphQL integrations</li>
+              <li>AI features with guardrails</li>
+            </ul>
+          </article>
+
+          <article class="card bento__card reveal">
+            <span class="card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M4 20V9.5L12 4l8 5.5V20" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9.5 20v-6h5v6" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            </span>
+            <h3>Design in Figma</h3>
+            <p>Full product design delivered in Figma, hand-off ready for Bubble — not a set of screenshots for engineers to guess at.</p>
+          </article>
+
+          <article class="card bento__card reveal">
+            <span class="card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </span>
+            <h3>Growth retainers</h3>
+            <p>A senior dev in your Slack every week. Features, experiments, fixes — prioritised against real revenue metrics.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="why">
+      <div class="container">
+        <div class="section__head section__head--center reveal">
+          <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>Why Bubble, done properly</p>
+          <h2 class="section__title">The right trade-off,<br /><span class="hero__serif">for the stage you are at.</span></h2>
+          <p class="section__lede">Bubble is not the answer to everything. It is the fastest, cheapest path to a product that is real — and we know exactly where its ceiling is.</p>
+        </div>
+
+        <div class="compare reveal">
+          <table>
+            <caption class="sr-only">Comparison of Bubble development versus custom code and other no-code tools</caption>
+            <thead>
+              <tr>
+                <th scope="col"><span class="sr-only">Criterion</span></th>
+                <th scope="col" class="compare__hi">Bubblecraft</th>
+                <th scope="col">Custom code</th>
+                <th scope="col">Other no-code</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Time to MVP</th>
+                <td class="compare__hi">4–6 weeks</td>
+                <td>4–6 months</td>
+                <td>3–5 weeks</td>
+              </tr>
+              <tr>
+                <th scope="row">Upfront cost</th>
+                <td class="compare__hi">$$</td>
+                <td>$$$$</td>
+                <td>$</td>
+              </tr>
+              <tr>
+                <th scope="row">Build quality</th>
+                <td class="compare__hi">Production</td>
+                <td>Production</td>
+                <td>Prototype</td>
+              </tr>
+              <tr>
+                <th scope="row">Custom logic</th>
+                <td class="compare__hi">Plugins + API</td>
+                <td>Unlimited</td>
+                <td>Limited</td>
+              </tr>
+              <tr>
+                <th scope="row">You own the editor</th>
+                <td class="compare__hi">Yes</td>
+                <td>Source code</td>
+                <td>Locked in</td>
+              </tr>
+              <tr>
+                <th scope="row">Best for</th>
+                <td class="compare__hi">Products, fast</td>
+                <td>Infra-heavy giants</td>
+                <td>Ideas to validate</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="compare-hint">Swipe the table sideways to compare all three.</p>
+
+        <div class="why-notes">
+          <div class="why-note reveal">
+            <h3>We tell you when to leave Bubble</h3>
+            <p>If your roadmap needs self-hosted infrastructure, sub-second latency or a 40-person engineering org, we will say so on the first call — and point you to people who can help.</p>
+          </div>
+          <div class="why-note reveal">
+            <h3>You keep the keys</h3>
+            <p>Every project is handed over in your editor, with documented data structures, named workflows and a recorded walkthrough. No hostage situations.</p>
+          </div>
+          <div class="why-note reveal">
+            <h3>No-code is not no craft</h3>
+            <p>Anyone can build a page. The difference is in the data model, the conditional logic, the edge cases and the load times. That is where we work.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="process">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>How we work</p>
+          <h2 class="section__title">A process built for<br /><span class="hero__serif">shipping, not billable hours.</span></h2>
+        </div>
+
+        <ol class="steps">
+          <li class="step reveal">
+            <span class="step__num">01</span>
+            <h3>Scoping &amp; architecture</h3>
+            <p>Two weeks. We map your flows, define the data model, flag the risky parts of Bubble and hand you a fixed-scope build plan.</p>
+            <span class="step__meta">Week 1–2</span>
+          </li>
+          <li class="step reveal">
+            <span class="step__num">02</span>
+            <h3>Design system</h3>
+            <p>One to two weeks. Figma components, responsive rules and states — designed to be rebuilt cleanly as Bubble reusable elements.</p>
+            <span class="step__meta">Week 2–4</span>
+          </li>
+          <li class="step reveal">
+            <span class="step__num">03</span>
+            <h3>Bubble build</h3>
+            <p>Two to four weeks. We build in your editor daily, in a shared project, with a live staging link from day one.</p>
+            <span class="step__meta">Week 4–7</span>
+          </li>
+          <li class="step reveal">
+            <span class="step__num">04</span>
+            <h3>QA &amp; launch</h3>
+            <p>One week. Edge cases, permissions, mobile, payments, email, performance passes. Then we ship and monitor.</p>
+            <span class="step__meta">Week 7–8</span>
+          </li>
+          <li class="step reveal">
+            <span class="step__num">05</span>
+            <h3>Iterate &amp; scale</h3>
+            <p>Ongoing. A weekly retainer, a backlog tied to revenue, and architecture that keeps up as your user base grows.</p>
+            <span class="step__meta">Month 2+</span>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="work">
+      <div class="container">
+        <div class="section__head section__head--split reveal">
+          <div>
+            <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>Selected work</p>
+            <h2 class="section__title">Products that<br /><span class="hero__serif">made money.</span></h2>
+          </div>
+          <p class="section__lede">Every build below shipped to real users, on a real Bubble editor, with a real business model behind it.</p>
+        </div>
+
+        <div class="work-grid">
+          <article class="work-card reveal">
+            <div class="work-card__visual work-card__visual--a" aria-hidden="true">
+              <span class="work-card__shape work-card__shape--1"></span>
+              <span class="work-card__shape work-card__shape--2"></span>
+              <span class="work-card__shape work-card__shape--3"></span>
+            </div>
+            <div class="work-card__body">
+              <p class="work-card__tag">Logistics SaaS</p>
+              <h3>Relay</h3>
+              <p>Dispatch and fleet management for regional carriers. Custom plugin for live GPS ingestion, 40+ editable screens, role-based permissions.</p>
+              <dl class="work-card__stats">
+                <div><dt>Time to launch</dt><dd>8 weeks</dd></div>
+                <div><dt>Companies onboard</dt><dd>1,240</dd></div>
+                <div><dt>Dispatch time</dt><dd>−63%</dd></div>
+              </dl>
+            </div>
+          </article>
+
+          <article class="work-card reveal">
+            <div class="work-card__visual work-card__visual--b" aria-hidden="true">
+              <span class="work-card__shape work-card__shape--1"></span>
+              <span class="work-card__shape work-card__shape--2"></span>
+              <span class="work-card__shape work-card__shape--3"></span>
+            </div>
+            <div class="work-card__body">
+              <p class="work-card__tag">Learning marketplace</p>
+              <h3>Coursely</h3>
+              <p>Cohort-based courses with live cohorts, certificates, split payouts and a subscription tier. Built a custom video hosting pipeline.</p>
+              <dl class="work-card__stats">
+                <div><dt>Time to launch</dt><dd>11 weeks</dd></div>
+                <div><dt>GMV, first year</dt><dd>$2.4M</dd></div>
+                <div><dt>Refund rate</dt><dd>1.2%</dd></div>
+              </dl>
+            </div>
+          </article>
+
+          <article class="work-card reveal">
+            <div class="work-card__visual work-card__visual--c" aria-hidden="true">
+              <span class="work-card__shape work-card__shape--1"></span>
+              <span class="work-card__shape work-card__shape--2"></span>
+              <span class="work-card__shape work-card__shape--3"></span>
+            </div>
+            <div class="work-card__body">
+              <p class="work-card__tag">Healthcare scheduling</p>
+              <h3>Medley</h3>
+              <p>Clinic booking, reminders and intake forms for 60 practices. Role-based access, audit trail and automated waitlist backfill.</p>
+              <dl class="work-card__stats">
+                <div><dt>Time to launch</dt><dd>6 weeks</dd></div>
+                <div><dt>Appointments / mo</dt><dd>40K</dd></div>
+                <div><dt>No-show rate</dt><dd>−31%</dd></div>
+              </dl>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="testimonials">
+      <div class="container">
+        <div class="section__head section__head--center reveal">
+          <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>Client words</p>
+          <h2 class="section__title">The people who<br /><span class="hero__serif">stayed with us.</span></h2>
+        </div>
+
+        <div class="quotes">
+          <figure class="quote reveal">
+            <blockquote>
+              <p>Two agencies quoted us nine months. Bubblecraft shipped a better product in seven weeks and our conversion rate went up 34% the month after launch.</p>
+            </blockquote>
+            <figcaption>
+              <span class="quote__avatar" aria-hidden="true">MR</span>
+              <span><b>Maya Rinaldi</b><i>CEO, Relay</i></span>
+            </figcaption>
+          </figure>
+          <figure class="quote reveal">
+            <blockquote>
+              <p>They rebuilt the mess we inherited and finally explained our own product to us. That last part is rarer than it should be.</p>
+            </blockquote>
+            <figcaption>
+              <span class="quote__avatar" aria-hidden="true">DK</span>
+              <span><b>Daniel Kwon</b><i>Head of Product, Coursely</i></span>
+            </figcaption>
+          </figure>
+          <figure class="quote reveal">
+            <blockquote>
+              <p>Weekly sprints, a Slack channel, zero surprises on the invoice. It is the first agency relationship where I actually know what I am paying for.</p>
+            </blockquote>
+            <figcaption>
+              <span class="quote__avatar" aria-hidden="true">SO</span>
+              <span><b>Sofia Okafor</b><i>Founder, Medley</i></span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="pricing">
+      <div class="container">
+        <div class="section__head section__head--center reveal">
+          <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>Engagements</p>
+          <h2 class="section__title">Fixed scope,<br /><span class="hero__serif">fixed price.</span></h2>
+          <p class="section__lede">No surprise invoices. You approve a scope before we start, and the price you see is the price you pay.</p>
+        </div>
+
+        <div class="plans">
+          <article class="plan reveal">
+            <h3 class="plan__name">Sprint</h3>
+            <p class="plan__price"><span class="plan__currency">$</span>4,500<span class="plan__unit">/ project</span></p>
+            <p class="plan__desc">One focused week of senior build time. The fastest way to unblock a roadmap.</p>
+            <ul class="plan__list">
+              <li>Editor audit &amp; architecture review</li>
+              <li>One feature or workflow built</li>
+              <li>Up to 1 plugin or API integration</li>
+              <li>Recording + written handover notes</li>
+            </ul>
+            <a class="btn btn--ghost btn--block" href="#contact">Start a sprint</a>
+          </article>
+
+          <article class="plan plan--featured reveal">
+            <span class="plan__flag">Most popular</span>
+            <h3 class="plan__name">Launch</h3>
+            <p class="plan__price"><span class="plan__currency">$</span>9,500<span class="plan__unit">/ from</span></p>
+            <p class="plan__desc">A complete MVP, designed, built, tested and shipped in four to eight weeks.</p>
+            <ul class="plan__list">
+              <li>Full product &amp; data architecture</li>
+              <li>Figma design system, responsive build</li>
+              <li>Auth, payments, email &amp; admin panel</li>
+              <li>QA pass, launch, 30 days of support</li>
+            </ul>
+            <a class="btn btn--primary btn--block" href="#contact">Book a scoping call</a>
+          </article>
+
+          <article class="plan reveal">
+            <h3 class="plan__name">Scale</h3>
+            <p class="plan__price"><span class="plan__currency">$</span>3,500<span class="plan__unit">/ month</span></p>
+            <p class="plan__desc">An ongoing senior developer in your corner, working a prioritised backlog.</p>
+            <ul class="plan__list">
+              <li>40+ hours of senior dev per month</li>
+              <li>Performance &amp; growth iterations</li>
+              <li>Priority Slack channel, same-day replies</li>
+              <li>Pause or cancel any month</li>
+            </ul>
+            <a class="btn btn--ghost btn--block" href="#contact">Talk to us</a>
+          </article>
+        </div>
+
+        <p class="plans__note reveal">Bespoke builds, Bubble editor migrations and enterprise workflows are quoted individually — usually within 48 hours.</p>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container faq-wrap">
+        <div class="section__head reveal">
+          <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>Questions</p>
+          <h2 class="section__title">Things clients<br /><span class="hero__serif">ask us first.</span></h2>
+          <p class="section__lede">Still unsure? <a href="#contact">Send us the question</a> and a senior dev will answer — not a sales rep.</p>
+        </div>
+
+        <div class="faq reveal" id="faqList">
+          <div class="faq__item">
+            <h3><button type="button" class="faq__q" aria-expanded="false" aria-controls="faq-a1" id="faq-q1">How fast can you actually launch?<span class="faq__icon" aria-hidden="true"></span></button></h3>
+            <div class="faq__a" id="faq-a1" role="region" aria-labelledby="faq-q1" hidden>
+              <p>Most MVPs go live in four to six weeks; complex multi-sided products take eight to twelve. We commit to a date after the scoping call, once we have seen your flows — and we stick to it or tell you early.</p>
+            </div>
+          </div>
+          <div class="faq__item">
+            <h3><button type="button" class="faq__q" aria-expanded="false" aria-controls="faq-a2" id="faq-q2">Is Bubble really enough for a real product?<span class="faq__icon" aria-hidden="true"></span></button></h3>
+            <div class="faq__a" id="faq-a2" role="region" aria-labelledby="faq-q2" hidden>
+              <p>For the majority of products we build — marketplaces, SaaS dashboards, booking systems, internal tools — yes. Where Bubble is the wrong answer, such as heavy real-time infrastructure or unusual compliance requirements, we will tell you on the first call and help you find the right agency.</p>
+            </div>
+          </div>
+          <div class="faq__item">
+            <h3><button type="button" class="faq__q" aria-expanded="false" aria-controls="faq-a3" id="faq-q3">Who owns the code and the editor?<span class="faq__icon" aria-hidden="true"></span></button></h3>
+            <div class="faq__a" id="faq-a3" role="region" aria-labelledby="faq-q3" hidden>
+              <p>You do, from the first commit. We build inside your Bubble editor and your accounts, so the project never depends on us staying in business. We hand over a documented editor, a recorded walkthrough and a folder of any plugins we wrote.</p>
+            </div>
+          </div>
+          <div class="faq__item">
+            <h3><button type="button" class="faq__q" aria-expanded="false" aria-controls="faq-a4" id="faq-q4">Can you take over a project from another agency?<span class="faq__icon" aria-hidden="true"></span></button></h3>
+            <div class="faq__a" id="faq-a4" role="region" aria-labelledby="faq-q4" hidden>
+              <p>Yes, and it is about a third of our work. We start with a two-day audit covering data structure, workflow health, front-end consistency and performance. You get a written report and a plan, whether or not you hire us for the rebuild.</p>
+            </div>
+          </div>
+          <div class="faq__item">
+            <h3><button type="button" class="faq__q" aria-expanded="false" aria-controls="faq-a5" id="faq-q5">How do you handle changes mid-build?<span class="faq__icon" aria-hidden="true"></span></button></h3>
+            <div class="faq__a" id="faq-a5" role="region" aria-labelledby="faq-q5" hidden>
+              <p>Scope changes are normal and we expect them. Anything that fits the original outcome is absorbed. Anything larger gets quoted as a written change order with the time and cost impact stated up front — never a surprise on the invoice.</p>
+            </div>
+          </div>
+          <div class="faq__item">
+            <h3><button type="button" class="faq__q" aria-expanded="false" aria-controls="faq-a6" id="faq-q6">Do you work with clients in other time zones?<span class="faq__icon" aria-hidden="true"></span></button></h3>
+            <div class="faq__a" id="faq-a6" role="region" aria-labelledby="faq-q6" hidden>
+              <p>Yes. We are a distributed team across Europe and North America, and we keep a four-hour overlap with every client. Async by default: a written daily update, a shared board and one weekly call is how we work with most teams.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="container contact__grid">
+        <div class="contact__copy reveal">
+          <p class="eyebrow"><span class="eyebrow__dot" aria-hidden="true"></span>Start here</p>
+          <h2 class="section__title">Tell us what<br /><span class="hero__serif">you are building.</span></h2>
+          <p class="section__lede">Book a 30-minute scoping call. You will get a rough timeline and a ballpark cost from a senior Bubble developer, whether you hire us or not.</p>
+          <ul class="contact__points">
+            <li>Response within one business day</li>
+            <li>No pitch deck, no jargon</li>
+            <li>Confidential — we sign NDAs on request</li>
+          </ul>
+          <div class="contact__direct">
+            <span>Prefer email?</span>
+            <a href="mailto:hello@bubblecraft.studio">hello@bubblecraft.studio</a>
+          </div>
+        </div>
+
+        <div class="contact__form-wrap reveal">
+          <form class="form" id="contactForm" novalidate>
+            <div class="form__row">
+              <div class="field">
+                <label for="name">Your name</label>
+                <input type="text" id="name" name="name" autocomplete="name" placeholder="Alex Rivera" required />
+                <p class="field__error" data-error-for="name"></p>
+              </div>
+              <div class="field">
+                <label for="email">Work email</label>
+                <input type="email" id="email" name="email" autocomplete="email" placeholder="alex@company.com" required />
+                <p class="field__error" data-error-for="email"></p>
+              </div>
+            </div>
+            <div class="field">
+              <label for="company">Company <span class="field__optional">optional</span></label>
+              <input type="text" id="company" name="company" autocomplete="organization" placeholder="Northwind Labs" />
+            </div>
+            <div class="field">
+              <label for="budget">Budget range</label>
+              <select id="budget" name="budget">
+                <option value="">Select a range</option>
+                <option value="under-10k">Under $10,000</option>
+                <option value="10-25k">$10,000 – $25,000</option>
+                <option value="25-50k">$25,000 – $50,000</option>
+                <option value="50k-plus">$50,000+</option>
+                <option value="retainer">Monthly retainer</option>
+                <option value="unsure">Not sure yet</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="message">What are you building?</label>
+              <textarea id="message" name="message" rows="4" placeholder="A marketplace for local fitness studios — bookings, memberships and payouts." required></textarea>
+              <p class="field__error" data-error-for="message"></p>
+            </div>
+            <button class="btn btn--primary btn--block" type="submit">Request a scoping call</button>
+            <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
+            <p class="form__fine">We reply to every enquiry. No newsletters, no sequences, no spam.</p>
+          </form>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="site-footer__top">
+        <div class="site-footer__brand">
+          <a class="brand" href="#top" aria-label="Bubblecraft home">
+            <span class="brand__mark" aria-hidden="true">
+              <span class="brand__bubble brand__bubble--1"></span>
+              <span class="brand__bubble brand__bubble--2"></span>
+              <span class="brand__bubble brand__bubble--3"></span>
+            </span>
+            <span class="brand__word">Bubblecraft</span>
+          </a>
+          <p>The Bubble development agency for teams that need a real product, not a prototype.</p>
+        </div>
+        <div class="site-footer__cols">
+          <div>
+            <h3>Services</h3>
+            <ul>
+              <li><a href="#services">MVP development</a></li>
+              <li><a href="#services">Scale &amp; performance</a></li>
+              <li><a href="#services">Rescue &amp; rebuilds</a></li>
+              <li><a href="#services">Plugins &amp; integrations</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Agency</h3>
+            <ul>
+              <li><a href="#work">Work</a></li>
+              <li><a href="#process">Process</a></li>
+              <li><a href="#pricing">Pricing</a></li>
+              <li><a href="#faq">FAQ</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Contact</h3>
+            <ul>
+              <li><a href="mailto:hello@bubblecraft.studio">hello@bubblecraft.studio</a></li>
+              <li><a href="#contact">Book a call</a></li>
+              <li><a href="#contact">Request an audit</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <p>© <span id="year">2026</span> Bubblecraft Studio. Built with Bubble, Figma and far too much coffee.</p>
+        <p class="site-footer__made">Made in the open, shipped in weeks.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js" defer></script>
 </body>
 </html>

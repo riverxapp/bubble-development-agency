@@ -1,27 +1,15 @@
-# HTML Blank Source
+# Bubblecraft — Bubble Development Agency Landing Page
 
-This repo is intentionally minimal.
+A landing page for a specialist [Bubble](https://bubble.io) development agency, built as a static
+site: no build step, no framework, no dependencies.
 
-## Purpose
+## Files
 
-- Serve a near-empty `index.html`.
-- Keep only the minimum runtime needed to preview the file locally or in Docker.
-
-## AI Agent Permission Policy
-
-The AI agent has full permission to inspect, modify, create, rename, or delete any file in this repository as it sees fit.
-
-There are no repository-level restrictions on:
-
-- HTML changes
-- CSS changes
-- JavaScript changes
-- Folder structure changes
-- Build or runtime changes
-- Content replacement
-- Deleting files judged unnecessary
-
-The agent should optimize for the requested outcome, not preserve prior structure.
+- `index.html` — page markup and copy
+- `styles.css` — design system, layout, responsive rules, reduced-motion support
+- `script.js` — nav, scroll reveal, counters, FAQ accordion, form validation, hero bubble canvas
+- `favicon.svg` — brand mark
+- `scripts/static-server.js` — local preview server (unchanged)
 
 ## Local Preview
 
@@ -29,11 +17,19 @@ The agent should optimize for the requested outcome, not preserve prior structur
 pnpm dev
 ```
 
-Default host and port come from `.env` when loaded externally, or from the server defaults.
+Default host and port come from `.env` when loaded externally, or from the server defaults
+(`http://localhost:5173`).
 
 ## Docker
 
 ```bash
-docker build -t html-blank-source .
-docker run --rm -p 5173:5173 html-blank-source
+docker build -t bubblecraft-landing .
+docker run --rm -p 5173:5173 bubblecraft-landing
 ```
+
+## Notes
+
+- The contact form is front-end only: it validates and confirms in the browser, then resets.
+  Wire the `submit` handler in `script.js` to a form endpoint or CRM before going live.
+- Content is placeholder copy for a fictional agency — swap names, prices, case studies and the
+  `mailto:` address in `index.html` and `script.js` structured data.
