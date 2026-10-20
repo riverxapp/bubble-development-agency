@@ -1,0 +1,11 @@
+{
+  "name": "html-starter-source",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "packageManager": "pnpm@10.26.2",
+  "scripts": {
+    "dev": "node scripts/static-server.js",
+    "preview": "node scripts/static-server.js"
+  }
+}
