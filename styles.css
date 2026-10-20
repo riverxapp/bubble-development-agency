@@ -1935,6 +1935,85 @@ ol {
   color: var(--muted-2);
 }
 
+.credit {
+  position: fixed;
+  right: clamp(1rem, 2.5vw, 1.75rem);
+  bottom: clamp(1rem, 2.5vw, 1.75rem);
+  z-index: 95;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.6rem 0.85rem 0.6rem 0.7rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 14px;
+  background: rgba(20, 20, 36, 0.86);
+  backdrop-filter: blur(14px) saturate(140%);
+  box-shadow: var(--shadow-md);
+  color: var(--muted);
+  font-size: 0.75rem;
+  line-height: 1.35;
+  transition: transform 0.25s var(--ease), border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+
+.credit:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.32);
+  box-shadow: 0 26px 60px -28px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 77, 141, 0.16);
+}
+
+.credit__mark {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  background: var(--gradient);
+  background-size: 180% 180%;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  box-shadow: 0 10px 22px -12px rgba(255, 77, 141, 0.9);
+}
+
+.credit__text {
+  display: grid;
+  gap: 0.1rem;
+}
+
+.credit__line {
+  white-space: nowrap;
+}
+
+.credit__line b {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.credit__line b.grad-text {
+  color: transparent;
+}
+
+.credit__line--sub {
+  color: var(--muted-2);
+}
+
+.credit__go {
+  flex: none;
+  width: 1.05rem;
+  height: 1.05rem;
+  color: var(--muted-2);
+  transition: color 0.25s var(--ease), transform 0.25s var(--ease);
+}
+
+.credit:hover .credit__go {
+  color: var(--text);
+  transform: translateX(2px);
+}
+
 .js .reveal {
   opacity: 0;
   transform: translateY(26px);
@@ -2128,6 +2207,23 @@ ol {
 
   .hero__actions .btn {
     width: 100%;
+  }
+
+  .credit {
+    gap: 0.55rem;
+    padding: 0.5rem 0.7rem 0.5rem 0.55rem;
+    font-size: 0.6875rem;
+  }
+
+  .credit__mark {
+    width: 26px;
+    height: 26px;
+    border-radius: 9px;
+    font-size: 0.625rem;
+  }
+
+  .credit__go {
+    display: none;
   }
 }
 
